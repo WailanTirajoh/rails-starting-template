@@ -8,11 +8,11 @@
   }
 
   .pagination-item-container {
-    @apply flex items-center justify-center h-8 w-auto px-2 rounded border;
+    @apply flex items-center justify-center h-8 w-auto px-2 border rounded shadow-sm;
   }
 
   .page > a {
-    @apply pagination-item-container;
+    @apply pagination-item-container border-none shadow-none;
   }
 
   .next > a {
@@ -32,6 +32,6 @@
   }
 
   .page.current {
-    @apply pagination-item-container cursor-not-allowed bg-gray-50;
+    @apply pagination-item-container cursor-not-allowed bg-blue-600 w-8 text-white;
   }
 }

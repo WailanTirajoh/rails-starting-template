@@ -16,9 +16,9 @@
     <table class="min-w-full bg-white">
       <thead>
         <tr>
-          <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Title</th>
-          <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Body</th>
-          <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider w-10">Actions</th>
+          <%= sortable_th label: 'Title', column: :title, path: :posts_path, class_style: "w-64 py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider" %>
+          <%= sortable_th label: 'Body', column: :body, path: :posts_path, class_style: "py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider" %>
+          <%= sortable_th label: 'Actions', column: :id, path: :posts_path, sortable: false, class_style: "py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider w-10" %>
         </tr>
       </thead>
       <tbody id="posts">

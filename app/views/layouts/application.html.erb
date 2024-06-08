@@ -7,8 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
@@ -33,17 +32,26 @@
     <header class="w-full h-16 bg-[#f6f6f8] pl-20 flex justify-between fixed top-0">
       <nav aria-label="header-nav" class="h-full">
         <ul class="h-full flex items-end">
-          <li class="bg-white h-14 p-2 rounded-t-xl w-32 flex items-center justify-center">
-            test
+          <li class="bg-white h-14 min-w-32 p-2 rounded-t-xl flex items-center justify-center">
+            Dashboard
           </li>
         </ul>
       </nav>
-      <div class="w-64 flex items-center gap-4 pr-4">
-        <div class="bg-white p-1 px-3 w-full rounded-2xl">
-          Wailan Thom Tirajoh
+      <div data-controller="dropdown">
+        <div class="flex items-center h-full">
+          <button data-action="click->dropdown#toggle" class="w-64 gap-4 pr-4 flex items-center">
+            <div class="bg-white p-2 px-3 w-full rounded-2xl">
+              Wailan Thom Tirajoh
+            </div>
+            <div class="">
+              <%= lucide_icon('user-round','class' => 'text-[#999c9e]') %>
+            </div>
+          </button>
         </div>
-        <div class="">
-          <%= lucide_icon('user-round','class' => 'text-[#999c9e]') %>
+        <div data-dropdown-target="content" class="absolute -bottom-12 right-4">
+            <div class="bg-white w-64 p-4 rounded-lg shadow">
+                Dropdown
+            </div>
         </div>
       </div>
     </header>

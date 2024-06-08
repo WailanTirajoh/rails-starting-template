@@ -65,3 +65,5 @@ end
 
 
 gem "lucide-rails", "~> 0.4.0"
+
+gem "jsbundling-rails", "~> 1.3"

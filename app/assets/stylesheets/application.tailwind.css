@@ -2,12 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .pagination {
+    @apply flex gap-2;
+  }
+
+  .pagination-item-container {
+    @apply flex items-center justify-center h-8 w-auto px-2 rounded border;
+  }
+
+  .page > a {
+    @apply pagination-item-container;
+  }
+
+  .next > a {
+    @apply pagination-item-container;
+  }
+
+  .last > a {
+    @apply pagination-item-container;
+  }
+
+  .first > a {
+    @apply pagination-item-container;
+  }
+
+  .prev > a {
+    @apply pagination-item-container;
+  }
+
+  .page.current {
+    @apply pagination-item-container cursor-not-allowed bg-gray-50;
   }
 }
-
-*/

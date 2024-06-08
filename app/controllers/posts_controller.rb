@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_posts, only: %i[ index ]
 
   # GET /posts
   def index
-    @posts = Post.all
   end
 
   # GET /posts/1
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      @posts = Post.all
+      set_posts
       render turbo_stream: [
         turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
         turbo_stream.update('notice', 'Post was successfully created.'),
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      @posts = Post.all
+      set_posts
       render turbo_stream: [
         turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
         turbo_stream.update('notice', 'Post was successfully updated.'),
@@ -61,6 +61,13 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_posts
+    sort_column = params[:sort] || "created_at"
+    sort_direction = params[:direction].presence_in(%w[asc desc]) || "desc"
+
+    @posts = Post.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
 
   # Only allow a list of trusted parameters through.

@@ -67,3 +67,5 @@ end
 gem "lucide-rails", "~> 0.4.0"
 
 gem "jsbundling-rails", "~> 1.3"
+
+gem "kaminari", "~> 1.2"

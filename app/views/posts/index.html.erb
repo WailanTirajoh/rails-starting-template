@@ -18,12 +18,20 @@
         <tr>
           <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Title</th>
           <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Body</th>
-          <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+          <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider w-10">Actions</th>
         </tr>
       </thead>
       <tbody id="posts">
         <%= render partial: 'posts/posts', locals: { posts: @posts } %>
       </tbody>
     </table>
+    <div class="flex justify-between items-center py-2">
+      <div class="">
+        <%= page_entries_info @posts %>
+      </div>
+      <div class="">
+        <%= paginate @posts %>
+      </div>
+    </div>
   </div>
 </div>

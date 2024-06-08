@@ -1,8 +1,15 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing post</h1>
+<%= turbo_frame_tag "modal" do %>
+  <div class="fixed z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full">
+    <div class="mx-auto md:w-2/3 w-full bg-white p-4 rounded-2xl shadow-xl">
+      <h1 class="font-bold text-4xl">Editing post</h1>
 
-  <%= render "form", post: @post %>
+      <%= render "form", post: @post %>
 
-  <%= link_to "Show this post", @post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to posts", posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+      <%= link_to "Show this post", @post, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Cancel", "#", data: {
+        controller: "modals",
+        action: "modals#close"
+      }, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+<% end %>

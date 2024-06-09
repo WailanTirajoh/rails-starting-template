@@ -8,7 +8,7 @@
     <%= link_to "New post", new_post_path, data: { turbo_frame: "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
     
-  <div id="posts" class="mt-6 overflow-x-auto">
-    <%= render partial: 'posts/posts', locals: { posts: @posts } %>
+  <div id="posts-datatable" class="mt-6 overflow-x-auto">
+    <%= render partial: 'posts/datatable', locals: { posts: @posts } %>
   </div>
 </div>

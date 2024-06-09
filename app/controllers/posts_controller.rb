@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if @post.save
       set_posts
       render turbo_stream: [
-        turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
+        turbo_stream.update('posts-datatable', partial: 'posts/datatable', locals: { posts: @posts }),
         turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully created.' }),
         turbo_stream.append('modal', partial: 'shared/close_modal') # Trigger modal close
       ]
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       set_posts
       render turbo_stream: [
-        turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
+        turbo_stream.update('posts-datatable', partial: 'posts/datatable', locals: { posts: @posts }),
         turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully updated.' }),
         turbo_stream.append('modal', partial: 'shared/close_modal') # Trigger modal close
       ]
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
 
     set_posts
     render turbo_stream: [
-      turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
+      turbo_stream.update('posts-datatable', partial: 'posts/datatable', locals: { posts: @posts }),
       turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully deleted.' })
     ]
   end

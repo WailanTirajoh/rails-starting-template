@@ -22,14 +22,14 @@
     </tbody>
 </table>
 <div class="flex justify-between items-center py-2">
-    <div class="">
-    <%= page_entries_info posts %>
+    <div>
+        <%= page_entries_info posts %>
     </div>
-    <div class="">
-    <%= paginate posts, params: {
-        controller: "posts",
-        action: "index",
-        page: params['page']
-    } %>
+    <div>
+        <%= paginate posts, params: {
+            controller: "posts",
+            action: "index",
+            page: params['page']
+        } %>
     </div>
 </div>

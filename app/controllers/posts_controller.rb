@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :set_posts, only: %i[ index ]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_posts, only: %i[index]
 
   # GET /posts
-  def index
-  end
+  def index; end
 
   # GET /posts/1
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -16,8 +14,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   def create
@@ -27,7 +24,7 @@ class PostsController < ApplicationController
       set_posts
       render turbo_stream: [
         turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
-        turbo_stream.update('notice', 'Post was successfully created.'),
+        turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully created.' }),
         turbo_stream.append('modal', partial: 'shared/close_modal') # Trigger modal close
       ]
     else
@@ -41,7 +38,7 @@ class PostsController < ApplicationController
       set_posts
       render turbo_stream: [
         turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
-        turbo_stream.update('notice', 'Post was successfully updated.'),
+        turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully updated.' }),
         turbo_stream.append('modal', partial: 'shared/close_modal') # Trigger modal close
       ]
     else
@@ -53,7 +50,11 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy!
 
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    set_posts
+    render turbo_stream: [
+      turbo_stream.update('posts', partial: 'posts/posts', locals: { posts: @posts }),
+      turbo_stream.update('notice', partial: 'shared/notice', locals: { notice: 'Post was successfully deleted.' })
+    ]
   end
 
   private
@@ -64,8 +65,8 @@ class PostsController < ApplicationController
   end
 
   def set_posts
-    sort_column = params[:sort] || "created_at"
-    sort_direction = params[:direction].presence_in(%w[asc desc]) || "desc"
+    sort_column = params[:sort] || 'created_at'
+    sort_direction = params[:direction].presence_in(%w[asc desc]) || 'desc'
 
     @posts = Post.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
